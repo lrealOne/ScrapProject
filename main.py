@@ -6,7 +6,6 @@ from data import gpu_scrape
 
 load_dotenv()
 
-
 def add(item):
     command = f"""
     INSERT INTO gpu (gpu_model, gpu_price, gpu_url)
@@ -15,23 +14,22 @@ def add(item):
 
     try:
         with mysql.connector.connect(
-            host= os.environ.get("MYSQL_HOST"),
+            host= "127.0.0.1",
             user= os.environ.get("MYSQL_USER"),
             passwd= os.environ.get("MYSQL_PASS"),
-            database= os.environ.get("MYSQL_DB"),
+            database= os.environ.get("MYSQL_DB")
         ) as connection:
             with connection.cursor() as cursor:
 
-                data = (item.gpu_model,
-                        item.gpu_price,
-                        item.gpu_url)
+                data = (item.model,
+                        item.price,
+                        item.url)
                 
                 cursor.execute(command, data)
 
                 connection.commit()
-
-                print("Adicionado a KBM Scrape")
-
+            
+        print("Adicionado a KBM Scrape")
     except mysql.connector.Error as erro:
         print(f"Erro: {erro}")
 

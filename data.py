@@ -23,5 +23,4 @@ class GpuInfo:
 
 gpu_scrape = [GpuInfo.add(item) for item in data]
 
-for gpu in gpu_scrape:
-    print(gpu.get_data())
+
