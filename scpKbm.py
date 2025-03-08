@@ -54,11 +54,11 @@ def ScrapeKBM():
                     url = item.find_element(By.CSS_SELECTOR, 'article > a').get_attribute('href')
 
                     try:
-                        price = item.find_element(By.CSS_SELECTOR, 'div.availablePricesCard span').text
+                        price = item.find_element(By.CSS_SELECTOR, '.sc-57f0fd6e-2.hjJfoh.priceCard').text
                     except:
                         price = "Unavailable"
 
-                    print("\n", model, price)
+                    print("\n",price)
                     data.append({'Model': model, 'Price': price, 'URL': url})
                 except Exception as e:
                     print(f"!!ERRO!! \n Item: {e}")
